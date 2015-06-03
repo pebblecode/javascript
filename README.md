@@ -1,4 +1,4 @@
-# pebble {code} JavaScript Style Guide() {
+# Bede Gaming JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript*
 
