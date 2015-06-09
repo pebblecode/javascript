@@ -136,7 +136,7 @@
     const item = {};
     ```
 
-  - [3.2](#3.2) <a name='3.2'></a> Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/pebble {code}/javascript/issues/61).
+  - [3.2](#3.2) <a name='3.2'></a> Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/pebblecode/javascript/issues/61).
 
     ```javascript
     // bad
@@ -400,7 +400,7 @@
     ```
 
   - [6.2](#6.2) <a name='6.2'></a> Strings longer than 80 characters should be written across multiple lines using string concatenation.
-  - [6.3](#6.3) <a name='6.3'></a> Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/pebble {code}/javascript/issues/40).
+  - [6.3](#6.3) <a name='6.3'></a> Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/pebblecode/javascript/issues/40).
 
     ```javascript
     // bad
@@ -725,15 +725,15 @@
 
     ```javascript
     // bad
-    const pebble {code}StyleGuide = require('./pebble {code}StyleGuide');
-    module.exports = pebble {code}StyleGuide.es6;
+    const pebbleCodeStyleGuide = require('./pebbleCodeStyleGuide');
+    module.exports = pebbleCodeStyleGuide.es6;
 
     // ok
-    import pebble {code}StyleGuide from './pebble {code}StyleGuide';
-    export default pebble {code}StyleGuide.es6;
+    import pebbleCodeStyleGuide from './pebbleCodeStyleGuide';
+    export default pebbleCodeStyleGuide.es6;
 
     // best
-    import { es6 } from './pebble {code}StyleGuide';
+    import { es6 } from './pebbleCodeStyleGuide';
     export default es6;
     ```
 
@@ -743,10 +743,10 @@
 
     ```javascript
     // bad
-    import * as pebble {code}StyleGuide from './pebble {code}StyleGuide';
+    import * as pebbleCodeStyleGuide from './pebbleCodeStyleGuide';
 
     // good
-    import pebble {code}StyleGuide from './pebble {code}StyleGuide';
+    import pebbleCodeStyleGuide from './pebbleCodeStyleGuide';
     ```
 
   - [10.3](#10.3) <a name='10.3'></a>And do not export directly from an import.
@@ -756,11 +756,11 @@
     ```javascript
     // bad
     // filename es6.js
-    export { es6 as default } from './pebble {code}StyleGuide';
+    export { es6 as default } from './pebbleCodeStyleGuide';
 
     // good
     // filename es6.js
-    import { es6 } from './pebble {code}StyleGuide';
+    import { es6 } from './pebbleCodeStyleGuide';
     export default es6;
     ```
 
@@ -1578,7 +1578,7 @@
     const val = inputValue >> 0;
     ```
 
-  - [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/pebble {code}/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/pebbleCode/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
 
     ```javascript
     2147483647 >> 0 //=> 2147483647
@@ -1726,12 +1726,12 @@
   - [22.8](#22.8) <a name='22.8'></a> Use PascalCase when you export a singleton / function library / bare object.
 
     ```javascript
-    const pebble {code}StyleGuide = {
+    const pebbleCodeStyleGuide = {
       es6: {
       }
     };
 
-    export default pebble {code}StyleGuide;
+    export default pebbleCodeStyleGuide;
     ```
 
 
@@ -1955,8 +1955,8 @@
 **Tools**
 
   - Code Style Linters
-    + [JSHint](http://www.jshint.com/) - [pebble {code} Style .jshintrc](https://github.com/pebble {code}/javascript/blob/master/linters/jshintrc)
-    + [JSCS](https://github.com/jscs-dev/node-jscs) - [pebble {code} Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/pebble {code}.json)
+    + [JSHint](http://www.jshint.com/) - [pebble {code} Style .jshintrc](https://github.com/pebblecode/javascript/blob/master/linters/jshintrc)
+    + [JSCS](https://github.com/jscs-dev/node-jscs) - [pebble {code} Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json)
 
 **Other Styleguides**
 
@@ -1967,7 +1967,7 @@
 **Other Styles**
 
   - [Naming this in nested functions](https://gist.github.com/4135065) - Christian Johansen
-  - [Conditional Callbacks](https://github.com/pebble {code}/javascript/issues/52) - Ross Allen
+  - [Conditional Callbacks](https://github.com/airbnb/javascript/issues/52) - Ross Allen
   - [Popular JavaScript Coding Conventions on Github](http://sideeffect.kr/popularconvention/#javascript) - JeongHoon Byun
   - [Multiple var statements in JavaScript, not superfluous](http://benalman.com/news/2012/05/multiple-var-statements-javascript/) - Ben Alman
 
