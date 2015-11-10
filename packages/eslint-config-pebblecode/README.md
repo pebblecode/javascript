@@ -1,34 +1,34 @@
-# eslint-config-airbnb
+# eslint-config-pebblecode
 
-This package provides Airbnb's .eslintrc as an extensible shared config.
+This package provides pebblecode's .eslintrc as an extensible shared config.
 
 ## Usage
 
 We export three ESLint configurations for your usage.
 
-### eslint-config-airbnb
+### eslint-config-pebblecode
 
 Our default export contains all of our ESLint rules, including EcmaScript 6+
 and React. It requires `eslint` and `eslint-plugin-react`.
 
-1. `npm install --save-dev eslint-config-airbnb eslint-plugin-react eslint`
-2. add `"extends": "airbnb"` to your .eslintrc
+1. `npm install --save-dev eslint-config-pebblecode eslint-plugin-react eslint`
+2. add `"extends": "pebblecode"` to your .eslintrc
 
-### eslint-config-airbnb/base
+### eslint-config-pebblecode/base
 
 Lints ES6+ but does not lint React. Requires `eslint`.
 
-1. `npm install --save-dev eslint-config-airbnb eslint`
-2. add `"extends": "airbnb/base"` to your .eslintrc
+1. `npm install --save-dev eslint-config-pebblecode eslint`
+2. add `"extends": "pebblecode/base"` to your .eslintrc
 
-### eslint-config-airbnb/legacy
+### eslint-config-pebblecode/legacy
 
 Lints ES5 and below. Only requires `eslint`.
 
-1. `npm install --save-dev eslint-config-airbnb eslint`
-2. add `"extends": "airbnb/legacy"` to your .eslintrc
+1. `npm install --save-dev eslint-config-pebblecode eslint`
+2. add `"extends": "pebblecode/legacy"` to your .eslintrc
 
-See [Airbnb's Javascript styleguide](https://github.com/airbnb/javascript) and
+See [pebblecode's Javascript styleguide](https://github.com/pebblecode/javascript) and
 the [ESlint config docs](http://eslint.org/docs/user-guide/configuring#extending-configuration-files)
 for more information.
 
@@ -58,14 +58,14 @@ You can make sure this module lints with itself using `npm run lint`.
 
 - switch to modular rules files courtesy the [eslint-config-default][ecd]
   project and [@taion][taion]. [PR][pr-modular]
-- export `eslint-config-airbnb/legacy` for ES5-only users.
-  `eslint-config-airbnb/legacy` does not require the `babel-eslint` parser.
+- export `eslint-config-pebblecode/legacy` for ES5-only users.
+  `eslint-config-pebblecode/legacy` does not require the `babel-eslint` parser.
   [PR][pr-legacy]
 
 [ecd]: https://github.com/walmartlabs/eslint-config-defaults
 [taion]: https://github.com/taion
-[pr-modular]: https://github.com/airbnb/javascript/pull/526
-[pr-legacy]: https://github.com/airbnb/javascript/pull/527
+[pr-modular]: https://github.com/pebblecode/javascript/pull/526
+[pr-legacy]: https://github.com/pebblecode/javascript/pull/527
 
 ### 0.0.9
 

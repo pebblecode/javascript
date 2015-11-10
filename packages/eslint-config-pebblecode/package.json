@@ -1,7 +1,7 @@
 {
-  "name": "eslint-config-airbnb",
-  "version": "1.0.0",
-  "description": "Airbnb's ESLint config, following our styleguide",
+  "name": "eslint-config-pebblecode",
+  "version": "1.0.1",
+  "description": "pebblecode's ESLint config, following our styleguide, fork of airbnb styleguide",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/airbnb/javascript"
+    "url": "https://github.com/pebblecode/javascript"
   },
   "keywords": [
     "eslint",
     "eslintconfig",
     "config",
-    "airbnb",
+    "pebblecode",
     "javascript",
     "styleguide"
   ],
@@ -29,13 +29,17 @@
       "name": "Jordan Harband",
       "email": "ljharb@gmail.com",
       "url": "http://ljharb.codes"
+    },
+    {
+      "name": "pebblecode",
+      "email": "opensource@pebblecode.com"
     }
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/airbnb/javascript/issues"
+    "url": "https://github.com/pebblecode/javascript/issues"
   },
-  "homepage": "https://github.com/airbnb/javascript",
+  "homepage": "https://github.com/pebblecode/javascript",
   "devDependencies": {
     "babel-tape-runner": "1.2.0",
     "eslint": "^1.8.0",
