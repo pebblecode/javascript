@@ -75,8 +75,6 @@ module.exports = {
     'operator-assignment': 0,
     // enforce operators to be placed before or after line breaks
     'operator-linebreak': 0,
-    // enforce padding within blocks
-    'padded-blocks': [2, 'never'],
     // require quotes around object literal property names
     'quote-props': 0,
     // specify whether double or single quotes should be used
