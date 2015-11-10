@@ -8,7 +8,7 @@ We export three ESLint configurations for your usage.
 
 ### eslint-config-pebblecode
 
-Our default export contains all of our ESLint rules, including EcmaScript 6+
+Our default export contains all of our ESLint rules, including ES2015
 and React. It requires `eslint` and `eslint-plugin-react`.
 
 1. `npm install --save-dev eslint-config-pebblecode eslint-plugin-react eslint`
@@ -16,7 +16,7 @@ and React. It requires `eslint` and `eslint-plugin-react`.
 
 ### eslint-config-pebblecode/base
 
-Lints ES6+ but does not lint React. Requires `eslint`.
+Lints ES2015 but does not lint React. Requires `eslint`.
 
 1. `npm install --save-dev eslint-config-pebblecode eslint`
 2. add `"extends": "pebblecode/base"` to your .eslintrc
@@ -35,14 +35,31 @@ for more information.
 ## Improving this config
 
 Consider adding test cases if you're making complicated rules changes, like
-anything involving regexes. Perhaps in a distant future, we could use literate
+anything involving regexes. Perhaps in the distant future, we could use literate
 programming to structure our README as test cases for our .eslintrc?
 
 You can run tests with `npm test`.
 
 You can make sure this module lints with itself using `npm run lint`.
 
+## Contributing
+
+In order to modify this package, you need to clone this repo.
+
+1. Make the changes you wish, including tests
+2. Try out the updated rules locally by installing from local dir
+3. Submit a PR back to the repo, or if you're flying by the seat of your pants, `GOTO 4`
+4. `npm version minor`
+5. `npm login` then `npm publish`
+6. Commit and push your changes back to the repo
+
 ## Changelog
+
+### 1.4.0
+- modify indent rule to include `{SwitchCase: 1}`
+
+### 1.3.0
+- add babel-eslint as default parser
 
 ### 1.0.0
 - require `eslint` `v1.0.0` or higher
