@@ -1,4 +1,6 @@
 module.exports = {
+  'parser': 'babel-eslint',
+
   'rules': {
     // specify the maximum depth that blocks can be nested
     'max-depth': [0, 4],

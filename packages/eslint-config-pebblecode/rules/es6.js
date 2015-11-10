@@ -1,6 +1,6 @@
 module.exports = {
   'env': {
-    'es6': false
+    'es6': false // one to look at.
   },
   'ecmaFeatures': {
     'arrowFunctions': true,
@@ -9,7 +9,7 @@ module.exports = {
     'defaultParams': true,
     'destructuring': true,
     'forOf': true,
-    'generators': false,
+    'generators': true,
     'modules': true,
     'objectLiteralComputedProperties': true,
     'objectLiteralDuplicateProperties': false,
