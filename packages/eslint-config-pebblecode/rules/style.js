@@ -10,6 +10,7 @@ module.exports = {
     'comma-spacing': [2, {'before': false, 'after': true}],
     // enforce one true comma style
     'comma-style': [2, 'last'],
+    'comma-dangle': [2, 'never'],
     // require or disallow padding inside computed properties
     'computed-property-spacing': 0,
     // enforces consistent naming when capturing the current execution context

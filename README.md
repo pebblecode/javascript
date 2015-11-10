@@ -1555,7 +1555,7 @@ Other Style Guides
 **[⬆ back to top](#table-of-contents)**
 
 ## Commas
-
+  ***** THIS RULE IS DIFFERENT TO AIRBNB *********
   - [19.1](#19.1) <a name='19.1'></a> Leading commas: **Nope.**
 
     ```javascript
@@ -1570,7 +1570,7 @@ Other Style Guides
     const story = [
       once,
       upon,
-      aTime,
+      aTime
     ];
 
     // bad
@@ -1586,12 +1586,13 @@ Other Style Guides
       firstName: 'Ada',
       lastName: 'Lovelace',
       birthYear: 1815,
-      superPower: 'computers',
+      superPower: 'computers'
     };
     ```
 
-  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: **Yup.**
 
+  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: **NO.** 
+  ***** THIS RULE IS DIFFERENT TO AIRBNB *********
   > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers.
 
     ```javascript
