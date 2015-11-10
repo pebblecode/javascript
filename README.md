@@ -1519,35 +1519,15 @@ Other Style Guides
     return arr;
     ```
 
-  - [18.8](#18.8) <a name='18.8'></a> Do not pad your blocks with blank lines.
-
+  - [18.8](#18.8) <a name='18.8'></a> Do pad your blocks with blank lines.
+    ***** THIS RULE IS DIFFERENT TO AIRBNB *********
+    
     ```javascript
-    // bad
+    // use your judgement to add padding to improve readability.
     function bar() {
 
       console.log(foo);
 
-    }
-
-    // also bad
-    if (baz) {
-
-      console.log(qux);
-    } else {
-      console.log(foo);
-
-    }
-
-    // good
-    function bar() {
-      console.log(foo);
-    }
-
-    // good
-    if (baz) {
-      console.log(qux);
-    } else {
-      console.log(foo);
     }
     ```
 
