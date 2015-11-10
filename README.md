@@ -1,6 +1,15 @@
-# pebble {code} JavaScript Style Guide() {
+# Airbnb JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript*
+
+[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+Other Style Guides
+ - [ES5](es5/)
+ - [React](react/)
+ - [CSS & Sass](https://github.com/airbnb/css)
+ - [Ruby](https://github.com/airbnb/ruby)
 
 ## Table of Contents
 
@@ -37,7 +46,7 @@
   1. [In the Wild](#in-the-wild)
   1. [Translation](#translation)
   1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Chat With Us About Javascript](#chat-with-us-about-javascript)
+  1. [Chat With Us About JavaScript](#chat-with-us-about-javascript)
   1. [Contributors](#contributors)
   1. [License](#license)
 
@@ -136,19 +145,19 @@
     const item = {};
     ```
 
-  - [3.2](#3.2) <a name='3.2'></a> Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/pebblecode/javascript/issues/61).
+  - [3.2](#3.2) <a name='3.2'></a> If your code will be executed in browsers in script context, don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61). It’s OK to use them in ES6 modules and server-side code.
 
     ```javascript
     // bad
     const superman = {
       default: { clark: 'kent' },
-      private: true
+      private: true,
     };
 
     // good
     const superman = {
       defaults: { clark: 'kent' },
-      hidden: true
+      hidden: true,
     };
     ```
 
@@ -157,17 +166,17 @@
     ```javascript
     // bad
     const superman = {
-      class: 'alien'
+      class: 'alien',
     };
 
     // bad
     const superman = {
-      klass: 'alien'
+      klass: 'alien',
     };
 
     // good
     const superman = {
-      type: 'alien'
+      type: 'alien',
     };
     ```
 
@@ -230,12 +239,12 @@
 
     // bad
     const obj = {
-      lukeSkywalker: lukeSkywalker
+      lukeSkywalker: lukeSkywalker,
     };
 
     // good
     const obj = {
-      lukeSkywalker
+      lukeSkywalker,
     };
     ```
 
@@ -250,7 +259,7 @@
     // bad
     const obj = {
       episodeOne: 1,
-      twoJedisWalkIntoACantina: 2,
+      twoJediWalkIntoACantina: 2,
       lukeSkywalker,
       episodeThree: 3,
       mayTheFourth: 4,
@@ -262,7 +271,7 @@
       lukeSkywalker,
       anakinSkywalker,
       episodeOne: 1,
-      twoJedisWalkIntoACantina: 2,
+      twoJediWalkIntoACantina: 2,
       episodeThree: 3,
       mayTheFourth: 4,
     };
@@ -286,7 +295,6 @@
 
     ```javascript
     const someStack = [];
-
 
     // bad
     someStack[someStack.length] = 'abracadabra';
@@ -399,8 +407,8 @@
     const name = 'Capt. Janeway';
     ```
 
-  - [6.2](#6.2) <a name='6.2'></a> Strings longer than 80 characters should be written across multiple lines using string concatenation.
-  - [6.3](#6.3) <a name='6.3'></a> Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/pebblecode/javascript/issues/40).
+  - [6.2](#6.2) <a name='6.2'></a> Strings longer than 100 characters should be written across multiple lines using string concatenation.
+  - [6.3](#6.3) <a name='6.3'></a> Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40).
 
     ```javascript
     // bad
@@ -439,6 +447,7 @@
       return `How are you, ${name}?`;
     }
     ```
+  - [6.5](#6.5) <a name='6.5'></a> Never use `eval()` on a string, it opens too many vulnerabilities.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -547,7 +556,7 @@
     }
     ```
 
-  - [7.8](#7.8) <a name='7.8'></a> Avoid side effects with default parameters
+  - [7.8](#7.8) <a name='7.8'></a> Avoid side effects with default parameters.
 
   > Why? They are confusing to reason about.
 
@@ -563,6 +572,31 @@
   count();  // 3
   ```
 
+  - [7.9](#7.9) <a name='7.9'></a> Always put default parameters last.
+
+    ```javascript
+    // bad
+    function handleThings(opts = {}, name) {
+      // ...
+    }
+
+    // good
+    function handleThings(name, opts = {}) {
+      // ...
+    }
+    ```
+
+- [7.10](#7.10) <a name='7.10'></a> Never use the Function constructor to create a new function.
+
+  > Why? Creating a function in this way evaluates a string similarly to eval(), which opens vulnerabilities.
+
+  ```javascript
+  // bad
+  var add = new Function('a', 'b', 'return a + b');
+
+  // still bad
+  var subtract = Function('a', 'b', 'return a - b');
+  ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -577,16 +611,18 @@
     ```javascript
     // bad
     [1, 2, 3].map(function (x) {
-      return x * x;
+      const y = x + 1;
+      return x * y;
     });
 
     // good
     [1, 2, 3].map((x) => {
-      return x * x;
+      const y = x + 1;
+      return x * y;
     });
     ```
 
-  - [8.2](#8.2) <a name='8.2'></a> If the function body fits on one line and there is only a single argument, feel free to omit the braces and parentheses, and use the implicit return. Otherwise, add the parentheses, braces, and use a `return` statement.
+  - [8.2](#8.2) <a name='8.2'></a> If the function body consists of a single expression, feel free to omit the braces and use the implicit return. Otherwise use a `return` statement.
 
   > Why? Syntactic sugar. It reads well when multiple functions are chained together.
 
@@ -594,12 +630,50 @@
 
     ```javascript
     // good
+    [1, 2, 3].map(number => `A string containing the ${number}.`);
+
+    // bad
+    [1, 2, 3].map(number => {
+      const nextNumber = number + 1;
+      `A string containing the ${nextNumber}.`;
+    });
+
+    // good
+    [1, 2, 3].map(number => {
+      const nextNumber = number + 1;
+      return `A string containing the ${nextNumber}.`;
+    });
+    ```
+
+  - [8.3](#8.3) <a name='8.3'></a> In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+
+  > Why? It shows clearly where the function starts and ends.
+
+    ```js
+    // bad
+    [1, 2, 3].map(number => 'As time went by, the string containing the ' +
+      `${number} became much longer. So we needed to break it over multiple ` +
+      'lines.'
+    );
+
+    // good
+    [1, 2, 3].map(number => (
+      `As time went by, the string containing the ${number} became much ` +
+      'longer. So we needed to break it over multiple lines.'
+    ));
+    ```
+
+
+  - [8.4](#8.4) <a name='8.4'></a> If your function only takes a single argument, feel free to omit the parentheses.
+
+  > Why? Less visual clutter.
+
+    ```js
+    // good
     [1, 2, 3].map(x => x * x);
 
     // good
-    [1, 2, 3].reduce((total, n) => {
-      return total + n;
-    }, 0);
+    [1, 2, 3].reduce((y, x) => x + y);
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -700,7 +774,7 @@
 
     ```javascript
     class Jedi {
-      contructor(options = {}) {
+      constructor(options = {}) {
         this.name = options.name || 'no name';
       }
 
@@ -725,15 +799,15 @@
 
     ```javascript
     // bad
-    const pebbleCodeStyleGuide = require('./pebbleCodeStyleGuide');
-    module.exports = pebbleCodeStyleGuide.es6;
+    const AirbnbStyleGuide = require('./AirbnbStyleGuide');
+    module.exports = AirbnbStyleGuide.es6;
 
     // ok
-    import pebbleCodeStyleGuide from './pebbleCodeStyleGuide';
-    export default pebbleCodeStyleGuide.es6;
+    import AirbnbStyleGuide from './AirbnbStyleGuide';
+    export default AirbnbStyleGuide.es6;
 
     // best
-    import { es6 } from './pebbleCodeStyleGuide';
+    import { es6 } from './AirbnbStyleGuide';
     export default es6;
     ```
 
@@ -743,10 +817,10 @@
 
     ```javascript
     // bad
-    import * as pebbleCodeStyleGuide from './pebbleCodeStyleGuide';
+    import * as AirbnbStyleGuide from './AirbnbStyleGuide';
 
     // good
-    import pebbleCodeStyleGuide from './pebbleCodeStyleGuide';
+    import AirbnbStyleGuide from './AirbnbStyleGuide';
     ```
 
   - [10.3](#10.3) <a name='10.3'></a>And do not export directly from an import.
@@ -756,11 +830,11 @@
     ```javascript
     // bad
     // filename es6.js
-    export { es6 as default } from './pebbleCodeStyleGuide';
+    export { es6 as default } from './airbnbStyleGuide';
 
     // good
     // filename es6.js
-    import { es6 } from './pebbleCodeStyleGuide';
+    import { es6 } from './AirbnbStyleGuide';
     export default es6;
     ```
 
@@ -915,7 +989,7 @@
       return name;
     }
 
-    // bad - unnessary function call
+    // bad - unnecessary function call
     function(hasName) {
       const name = getName();
 
@@ -1035,7 +1109,7 @@
     }
     ```
 
-  - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) by [Ben Cherry](http://www.adequatelygood.com/).
+  - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1043,7 +1117,7 @@
 ## Comparison Operators & Equality
 
   - [15.1](#15.1) <a name='15.1'></a> Use `===` and `!==` over `==` and `!=`.
-  - [15.2](#15.2) <a name='15.2'></a> Conditional statements such as the `if` statement evaulate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
+  - [15.2](#15.2) <a name='15.2'></a> Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
 
     + **Objects** evaluate to **true**
     + **Undefined** evaluates to **false**
@@ -1174,7 +1248,7 @@
     }
     ```
 
-  - [17.2](#17.2) <a name='17.2'></a> Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment.
+  - [17.2](#17.2) <a name='17.2'></a> Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it's on the first line of a block.
 
     ```javascript
     // bad
@@ -1202,6 +1276,14 @@
 
       return type;
     }
+
+    // also good
+    function getType() {
+      // set the default type to 'no type'
+      const type = this._type || 'no type';
+
+      return type;
+    }
     ```
 
   - [17.3](#17.3) <a name='17.3'></a> Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
@@ -1209,8 +1291,10 @@
   - [17.4](#17.4) <a name='17.4'></a> Use `// FIXME:` to annotate problems.
 
     ```javascript
-    class Calculator {
+    class Calculator extends Abacus {
       constructor() {
+        super();
+
         // FIXME: shouldn't use a global here
         total = 0;
       }
@@ -1220,8 +1304,10 @@
   - [17.5](#17.5) <a name='17.5'></a> Use `// TODO:` to annotate solutions to problems.
 
     ```javascript
-    class Calculator {
+    class Calculator extends Abacus {
       constructor() {
+        super();
+
         // TODO: total should be configurable by an options param
         this.total = 0;
       }
@@ -1268,13 +1354,13 @@
     // bad
     dog.set('attr',{
       age: '1 year',
-      breed: 'Bernese Mountain Dog'
+      breed: 'Bernese Mountain Dog',
     });
 
     // good
     dog.set('attr', {
       age: '1 year',
-      breed: 'Bernese Mountain Dog'
+      breed: 'Bernese Mountain Dog',
     });
     ```
 
@@ -1336,7 +1422,7 @@
     })(this);↵
     ```
 
-  - [18.5](#18.5) <a name='18.5'></a> Use indentation when making long method chains. Use a leading dot, which
+  - [18.6](#18.6) <a name='18.6'></a> Use indentation when making long method chains. Use a leading dot, which
     emphasizes that the line is a method call, not a new statement.
 
     ```javascript
@@ -1376,7 +1462,7 @@
         .call(tron.led);
     ```
 
-  - [18.6](#18.6) <a name='18.6'></a> Leave a blank line after blocks and before the next statement
+  - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement.
 
     ```javascript
     // bad
@@ -1411,6 +1497,58 @@
     };
 
     return obj;
+
+    // bad
+    const arr = [
+      function foo() {
+      },
+      function bar() {
+      },
+    ];
+    return arr;
+
+    // good
+    const arr = [
+      function foo() {
+      },
+
+      function bar() {
+      },
+    ];
+
+    return arr;
+    ```
+
+  - [18.8](#18.8) <a name='18.8'></a> Do not pad your blocks with blank lines.
+
+    ```javascript
+    // bad
+    function bar() {
+
+      console.log(foo);
+
+    }
+
+    // also bad
+    if (baz) {
+
+      console.log(qux);
+    } else {
+      console.log(foo);
+
+    }
+
+    // good
+    function bar() {
+      console.log(foo);
+    }
+
+    // good
+    if (baz) {
+      console.log(qux);
+    } else {
+      console.log(foo);
+    }
     ```
 
 
@@ -1462,15 +1600,15 @@
          firstName: 'Florence',
     -    lastName: 'Nightingale'
     +    lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb graph', 'mordern nursing']
-    }
+    +    inventorOf: ['coxcomb graph', 'modern nursing']
+    };
 
     // good - git diff with trailing comma
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb chart', 'mordern nursing'],
-    }
+    +    inventorOf: ['coxcomb chart', 'modern nursing'],
+    };
 
     // bad
     const hero = {
@@ -1522,7 +1660,7 @@
     })();
     ```
 
-    [Read more](http://stackoverflow.com/a/7365214/1712802).
+    [Read more](http://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214).
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1542,7 +1680,7 @@
     const totalScore = String(this.reviewScore);
     ```
 
-  - [21.3](#21.3) <a name='21.3'></a> Use `parseInt` for Numbers and always with a radix for type casting.
+  - [21.3](#21.3) <a name='21.3'></a> Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings.
 
     ```javascript
     const inputValue = '4';
@@ -1578,7 +1716,7 @@
     const val = inputValue >> 0;
     ```
 
-  - [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/pebbleCode/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
 
     ```javascript
     2147483647 >> 0 //=> 2147483647
@@ -1726,12 +1864,12 @@
   - [22.8](#22.8) <a name='22.8'></a> Use PascalCase when you export a singleton / function library / bare object.
 
     ```javascript
-    const pebbleCodeStyleGuide = {
+    const AirbnbStyleGuide = {
       es6: {
       }
     };
 
-    export default pebbleCodeStyleGuide;
+    export default AirbnbStyleGuide;
     ```
 
 
@@ -1757,7 +1895,7 @@
     dragon.setAge(25);
     ```
 
-  - [23.3](#23.3) <a name='23.3'></a> If the property is a boolean, use isVal() or hasVal().
+  - [23.3](#23.3) <a name='23.3'></a> If the property is a `boolean`, use `isVal()` or `hasVal()`.
 
     ```javascript
     // bad
@@ -1812,7 +1950,7 @@
 
     ```javascript
     // good
-    $(this).trigger('listingUpdated', { listingId : listing.id });
+    $(this).trigger('listingUpdated', { listingId: listing.id });
 
     ...
 
@@ -1834,6 +1972,9 @@
 
     // good
     const $sidebar = $('.sidebar');
+
+    // good
+    const $sidebarBtn = $('.sidebar-btn');
     ```
 
   - [25.2](#25.2) <a name='25.2'></a> Cache jQuery lookups.
@@ -1888,13 +2029,13 @@
 
 ## ECMAScript 5 Compatibility
 
-  - [26.1](#26.1) <a name='26.1'></a> Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/).
+  - [26.1](#26.1) <a name='26.1'></a> Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.io/es5-compat-table/).
 
 **[⬆ back to top](#table-of-contents)**
 
 ## ECMAScript 6 Styles
 
-[27.1](#27.1) <a name='27.1'></a> This is a collection of links to the various es6 features.
+  - [27.1](#27.1) <a name='27.1'></a> This is a collection of links to the various es6 features.
 
 1. [Arrow Functions](#arrow-functions)
 1. [Classes](#constructors)
@@ -1914,20 +2055,28 @@
 
 ## Testing
 
-  - [28.1](#28.1) <a name='28.1'></a> **Yup.**
+  - [28.1](#28.1) <a name="28.1"></a> **Yup.**
 
     ```javascript
-    function() {
+    function () {
       return true;
     }
     ```
+
+  - [28.2](#28.2) <a name="28.2"></a> **No, but seriously**:
+   - Whichever testing framework you use, you should be writing tests!
+   - Strive to write many small pure functions, and minimize where mutations occur.
+   - Be cautious about stubs and mocks - they can make your tests more brittle.
+   - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
+   - 100% test coverage is a good goal to strive for, even if it's not always practical to reach it.
+   - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
 
 **[⬆ back to top](#table-of-contents)**
 
 
 ## Performance
 
-  - [On Layout & Web Performance](http://kellegous.com/j/2013/01/26/layout-performance/)
+  - [On Layout & Web Performance](http://www.kellegous.com/j/2013/01/26/layout-performance/)
   - [String vs Array Concat](http://jsperf.com/string-vs-array-concat/2)
   - [Try/Catch Cost In a Loop](http://jsperf.com/try-catch-in-loop-cost)
   - [Bang Function](http://jsperf.com/bang-function)
@@ -1950,23 +2099,24 @@
 
 **Read This**
 
-  - [Annotated ECMAScript 5.1](http://es5.github.com/)
+  - [Standard ECMA-262](http://www.ecma-international.org/ecma-262/6.0/index.html)
 
 **Tools**
 
   - Code Style Linters
-    + [JSHint](http://www.jshint.com/) - [pebble {code} Style .jshintrc](https://github.com/pebblecode/javascript/blob/master/linters/jshintrc)
-    + [JSCS](https://github.com/jscs-dev/node-jscs) - [pebble {code} Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json)
+    + [ESlint](http://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
+    + [JSHint](http://jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/jshintrc)
+    + [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json)
 
-**Other Styleguides**
+**Other Style Guides**
 
   - [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-  - [jQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)
-  - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwldrn/idiomatic.js/)
+  - [jQuery Core Style Guidelines](http://contribute.jquery.org/style-guide/js/)
+  - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwaldron/idiomatic.js)
 
 **Other Styles**
 
-  - [Naming this in nested functions](https://gist.github.com/4135065) - Christian Johansen
+  - [Naming this in nested functions](https://gist.github.com/cjohansen/4135065) - Christian Johansen
   - [Conditional Callbacks](https://github.com/airbnb/javascript/issues/52) - Ross Allen
   - [Popular JavaScript Coding Conventions on Github](http://sideeffect.kr/popularconvention/#javascript) - JeongHoon Byun
   - [Multiple var statements in JavaScript, not superfluous](http://benalman.com/news/2012/05/multiple-var-statements-javascript/) - Ben Alman
@@ -1993,29 +2143,125 @@
   - [Human JavaScript](http://humanjavascript.com/) - Henrik Joreteg
   - [Superhero.js](http://superherojs.com/) - Kim Joar Bekkelund, Mads Mobæk, & Olav Bjorkoy
   - [JSBooks](http://jsbooks.revolunet.com/) - Julien Bouquillon
-  - [Third Party JavaScript](http://manning.com/vinegar/) - Ben Vinegar and Anton Kovalyov
+  - [Third Party JavaScript](https://www.manning.com/books/third-party-javascript) - Ben Vinegar and Anton Kovalyov
   - [Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript](http://amzn.com/0321812182) - David Herman
+  - [Eloquent JavaScript](http://eloquentjavascript.net/) - Marijn Haverbeke
+  - [You Don't Know JS: ES6 & Beyond](http://shop.oreilly.com/product/0636920033769.do) - Kyle Simpson
 
 **Blogs**
 
   - [DailyJS](http://dailyjs.com/)
   - [JavaScript Weekly](http://javascriptweekly.com/)
   - [JavaScript, JavaScript...](http://javascriptweblog.wordpress.com/)
-  - [Bocoup Weblog](http://weblog.bocoup.com/)
+  - [Bocoup Weblog](https://bocoup.com/weblog)
   - [Adequately Good](http://www.adequatelygood.com/)
-  - [NCZOnline](http://www.nczonline.net/)
+  - [NCZOnline](https://www.nczonline.net/)
   - [Perfection Kills](http://perfectionkills.com/)
   - [Ben Alman](http://benalman.com/)
   - [Dmitry Baranovskiy](http://dmitry.baranovskiy.com/)
   - [Dustin Diaz](http://dustindiaz.com/)
-  - [nettuts](http://net.tutsplus.com/?s=javascript)
+  - [nettuts](http://code.tutsplus.com/?s=javascript)
 
 **Podcasts**
 
-  - [JavaScript Jabber](http://devchat.tv/js-jabber/)
+  - [JavaScript Jabber](https://devchat.tv/js-jabber/)
 
 
 **[⬆ back to top](#table-of-contents)**
+
+## In the Wild
+
+  This is a list of organizations that are using this style guide. Send us a pull request and we'll add you to the list.
+
+  - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
+  - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
+  - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
+  - **Apartmint**: [apartmint/javascript](https://github.com/apartmint/javascript)
+  - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
+  - **Billabong**: [billabong/javascript](https://github.com/billabong/javascript)
+  - **Blendle**: [blendle/javascript](https://github.com/blendle/javascript)
+  - **ComparaOnline**: [comparaonline/javascript](https://github.com/comparaonline/javascript-style-guide)
+  - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
+  - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
+  - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
+  - **Ecosia**: [ecosia/javascript](https://github.com/ecosia/javascript)
+  - **Evernote**: [evernote/javascript-style-guide](https://github.com/evernote/javascript-style-guide)
+  - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
+  - **Expensify** [Expensify/Style-Guide](https://github.com/Expensify/Style-Guide/blob/master/javascript.md)
+  - **Flexberry**: [Flexberry/javascript-style-guide](https://github.com/Flexberry/javascript-style-guide)
+  - **Gawker Media**: [gawkermedia/javascript](https://github.com/gawkermedia/javascript)
+  - **General Electric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
+  - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
+  - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
+  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript-style-guide)
+  - **Huballin**: [huballin/javascript](https://github.com/huballin/javascript)
+  - **HubSpot**: [HubSpot/javascript](https://github.com/HubSpot/javascript)
+  - **Hyper**: [hyperoslo/javascript-playbook](https://github.com/hyperoslo/javascript-playbook/blob/master/style.md)
+  - **InfoJobs**: [InfoJobs/JavaScript-Style-Guide](https://github.com/InfoJobs/JavaScript-Style-Guide)
+  - **Intent Media**: [intentmedia/javascript](https://github.com/intentmedia/javascript)
+  - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
+  - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
+  - **Kinetica Solutions**: [kinetica/javascript](https://github.com/kinetica/Javascript-style-guide)
+  - **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
+  - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
+  - **MitocGroup**: [MitocGroup/javascript](https://github.com/MitocGroup/javascript)
+  - **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
+  - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
+  - **Muber**: [muber/javascript](https://github.com/muber/javascript)
+  - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
+  - **National Park Service**: [nationalparkservice/javascript](https://github.com/nationalparkservice/javascript)
+  - **Nimbl3**: [nimbl3/javascript](https://github.com/nimbl3/javascript)
+  - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
+  - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
+  - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
+  - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
+  - **REI**: [reidev/js-style-guide](https://github.com/reidev/js-style-guide)
+  - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
+  - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
+  - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
+  - **Springload**: [springload/javascript](https://github.com/springload/javascript)
+  - **StudentSphere**: [studentsphere/javascript](https://github.com/studentsphere/guide-javascript)
+  - **Target**: [target/javascript](https://github.com/target/javascript)
+  - **TheLadders**: [TheLadders/javascript](https://github.com/TheLadders/javascript)
+  - **T4R Technology**: [T4R-Technology/javascript](https://github.com/T4R-Technology/javascript)
+  - **VoxFeed**: [VoxFeed/javascript-style-guide](https://github.com/VoxFeed/javascript-style-guide)
+  - **Weggo**: [Weggo/javascript](https://github.com/Weggo/javascript)
+  - **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
+  - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
+
+**[⬆ back to top](#table-of-contents)**
+
+## Translation
+
+  This style guide is also available in other languages:
+
+  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
+  - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
+  - ![ca](https://raw.githubusercontent.com/fpmweb/javascript-style-guide/master/img/catala.png) **Catalan**: [fpmweb/javascript-style-guide](https://github.com/fpmweb/javascript-style-guide)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [sivan/javascript-style-guide](https://github.com/sivan/javascript-style-guide)
+  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese (Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
+  - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
+  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
+  - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [sinkswim/javascript-style-guide](https://github.com/sinkswim/javascript-style-guide)
+  - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
+  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [tipjs/javascript-style-guide](https://github.com/tipjs/javascript-style-guide)
+  - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [mjurczyk/javascript](https://github.com/mjurczyk/javascript)
+  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
+  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
+  - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
+
+## The JavaScript Style Guide Guide
+
+  - [Reference](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
+
+## Chat With Us About JavaScript
+
+  - Find us on [gitter](https://gitter.im/airbnb/javascript).
+
+## Contributors
+
+  - [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
+
 
 ## License
 
@@ -2043,5 +2289,9 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 **[⬆ back to top](#table-of-contents)**
+
+## Amendments
+
+We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
 
 # };
