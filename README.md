@@ -3,7 +3,9 @@
 *A mostly reasonable approach to JavaScript*
 
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-pebblecode.svg)](https://www.npmjs.com/package/eslint-config-pebblecode)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/pebblecode/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+** Making Updates? [See here](./packages/eslint-config-pebblecode/README.md)**
 
 Other Style Guides
  - [ES5](es5/)
