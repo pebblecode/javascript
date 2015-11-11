@@ -14,7 +14,7 @@ and React. It requires `eslint` and `eslint-plugin-react`.
 1. `npm install --save-dev eslint-config-pebblecode eslint-plugin-react eslint`
 2. add `"extends": "pebblecode"` to your .eslintrc
 
-### eslint-config-pebblecode/base
+### eslint-config-pebblecode/basestrict
 
 Lints ES2015 but does not lint React. Requires `eslint`.
 
